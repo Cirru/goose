@@ -44,3 +44,10 @@ func cat(f *file.File) {
       }
   }
 }
+
+Otto.Set("def", 11)
+Otto.Run(`
+  console.log("The value of def is " + def)
+    // The value of def is 1
+
+`)

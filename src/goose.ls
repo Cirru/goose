@@ -25,47 +25,61 @@ add-bracket = (list) ->
   at-round = no
   dont-pos = 0
 
+  at-string = no
+
   indent = 0
 
   res = []
   list.for-each (line) ->
-    n = count-indent line
-    # show \compare n, indent
-    if n > indent
-      if res[*-1]?
-        key = res[*-1].match(/\s*(\S+)/).1
-        if key in dont-wrap
-          at-dont := yes
-          dont-pos := n
-        else if key in round-wrap
-          res[*-1] += " ("
-          at-round := yes
-        else
-          res[*-1] += " {"
-      res.push line
-      indent := n
-    else if n < indent
-      while n < indent
-        curr = indent - 1
-        if at-round
-          gen = '  ' * curr + ")"
-          res.push gen
-          at-round := off
-        else if at-dont and (indent is dont-pos)
-          at-dont := off
-        else
-          gen = '  ' * curr + "}"
-          res.push gen
-        indent := indent - 1
+    if at-string
+      if line.match(/^\s*\`/)?
+        at-string := off
+        # show "turn off", line
       res.push line
     else
-      res.push line
+      if line.match(/\`\s*$/)?
+        # show "turn on", line
+        at-string := on
+      n = count-indent line
+      # show \compare n, indent
+      if n > indent
+        if res[*-1]?
+          key = res[*-1].match(/\s*(\S+)/).1
+          if key in dont-wrap
+            at-dont := yes
+            dont-pos := n
+          else if key in round-wrap
+            res[*-1] += " ("
+            at-round := yes
+          else
+            res[*-1] += " {"
+        res.push line
+        indent := n
+      else if n < indent
+        while n < indent
+          curr = indent - 1
+          if at-round
+            gen = '  ' * curr + ")"
+            res.push gen
+            at-round := off
+          else if at-dont and (indent is dont-pos)
+            at-dont := off
+          else
+            gen = '  ' * curr + "}"
+            res.push gen
+          indent := indent - 1
+        res.push line
+      else
+        res.push line
   res
 
 blank-line = (list) ->
   list.map (line) ->
     if line.match /^\s*\/\/\s*$/ then ""
     else line
+
+use-tab = (line) ->
+  line.replace /\s\s/g "\t"
 
 exports.goose = (code) ->
   list = code.split "\n"
@@ -75,4 +89,5 @@ exports.goose = (code) ->
   list = add-bracket list
   # show list
   list = blank-line list
+  # list = list.map use-tab
   list.join \\n
