@@ -26,12 +26,15 @@ Below is the parts covered in this script:
 * `var const import` use parentheses
 * `case` don't need brackets
 * `// comments` for comments
+* `backquote` represents cross line strings
+* golang use `"\t"` to indent
 
 ### Examples:
 
 This is only a demo in fake code:
 
 ```go
+
 package main
 
 import "fmt"
@@ -70,11 +73,19 @@ func cat(f *file.File)
     case nr > 0:
       if nw, ew := file.Stdout.Write(buf[0:nr]); nw != nr
         fmt.Fprintf(os.Stderr, "cat: error writing from %s: %s\n", f.String(), ew.String())
+
+Otto.Set("def", 11)
+Otto.Run(`
+  console.log("The value of def is " + def)
+    // The value of def is 1
+
+`)
 ```
 
 Converts to:
 
 ```go
+
 package main
 
 import "fmt"
@@ -120,6 +131,13 @@ func cat(f *file.File) {
       }
   }
 }
+
+Otto.Set("def", 11)
+Otto.Run(`
+  console.log("The value of def is " + def)
+    // The value of def is 1
+
+`)
 ```
 
 ### License
