@@ -1,21 +1,27 @@
 
 ## Goose is a command which adds brackets for golang!
 
-Golang is great! But its syntax don't fit me..  
-I have no idea about changing it. So, change the way I code.  
-Please help me if you are familiar with Golang, or if you like indentation-sensitive syntax.
+Golang is great! But its syntax doesn't fit me..  
+I have no idea about changing it. Only to change the way I code it.  
+Please help me if you are familiar with Golang.  
+Indentation-sensitive syntax is more concise. Some people like it, some hate it.  
+But there should always be an alternative solution for the minority.  
 Hope you like it.
 
 ### Installation
 
 By now it's a simple and fragile script adding brackets by counting.  
-Installing it with npm, you may need to add `sudo` in front:
+There shouldn't be any output after running it. Note that I only tested on Linux.  
+Installing it with npm, some of you may need to add `sudo`:
 
 ```
 npm install -g goose
 ```
 
-### Consodered:
+### Considered:
+
+It'll be much more complicated to make it compatible with the whole go syntax.   
+Below is the parts covered in this script:
 
 * `var const import` use parentheses
 * `case` don't need brackets
@@ -23,7 +29,7 @@ npm install -g goose
 
 ### Examples:
 
-This is only a demo in fake code. Things not listed haven't be consodered.
+This is only a demo in fake code:
 
 ```go
 package main
@@ -66,7 +72,9 @@ func cat(f *file.File)
         fmt.Fprintf(os.Stderr, "cat: error writing from %s: %s\n", f.String(), ew.String())
 ```
 
-```
+Converts to:
+
+```go
 package main
 
 import "fmt"
