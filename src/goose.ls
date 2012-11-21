@@ -79,7 +79,11 @@ blank-line = (list) ->
     else line
 
 use-tab = (line) ->
-  line.replace /\s\s/g "\t"
+  res = line.match /^(\s*)(.*)$/
+  head = res.1.replace /\s\s/g "\t"
+  content = res.2
+  ret =head + content
+  ret
 
 exports.goose = (code) ->
   list = code.split "\n"
@@ -89,5 +93,5 @@ exports.goose = (code) ->
   list = add-bracket list
   # show list
   list = blank-line list
-  # list = list.map use-tab
+  list = list.map use-tab
   list.join \\n

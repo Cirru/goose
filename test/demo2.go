@@ -1,28 +1,28 @@
 
 a {
-  d {
-    d {
-      // comment
-      dd
-    }
-  }
+	d {
+		d {
+			// comment
+			dd
+		}
+	}
 }
 d
 // some omment
 
 a`
-  new
-  more
-    more
-      more
+	new
+	more
+		more
+			more
 `
 run {
-  more (`
-  ok
-    sdfsdf
-      ok
-  fun
+	more (`
+	ok
+		sdfsdf
+			ok
+	fun
 fgun
-  `)
+	`)
 }
 dd

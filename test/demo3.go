@@ -2,14 +2,14 @@
 package main
 
 import (
-  "github.com/hoisie/web"
+	"github.com/hoisie/web"
 )
 
 func hello(var string) string {
-  return "hello " + val
+	return "hello " + val
 }
 
 func main() {
-  web.Get ("/(.*)", hello)
-  web.Run ("0.0.0.0:9999")
+	web.Get ("/(.*)", hello)
+	web.Run ("0.0.0.0:9999")
 }
