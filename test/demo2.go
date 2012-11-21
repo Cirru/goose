@@ -1,17 +1,11 @@
-//
-code {
-  //
-  code {
-    dfsdf
+
+a {
+  d {
+    d {
+      // comment
+      dd
+    }
   }
-  //
-  var (
-    int a
-    int b
-  )
-  //
-  sdfsdf
 }
-//
-//
-//
+d
+// some omment

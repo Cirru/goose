@@ -12,7 +12,7 @@ mark-comment = (list) ->
       res = indent + "//"
     else
       indent := get-indent line
-    show \res res
+    # show \res res
     res
   ret.reverse!
 
@@ -30,7 +30,7 @@ add-bracket = (list) ->
   res = []
   list.for-each (line) ->
     n = count-indent line
-    show \compare n, indent
+    # show \compare n, indent
     if n > indent
       if res[*-1]?
         key = res[*-1].match(/\s*(\S+)/).1
@@ -56,15 +56,23 @@ add-bracket = (list) ->
         else
           gen = '  ' * curr + "}"
           res.push gen
-        res.push line
         indent := indent - 1
+      res.push line
     else
       res.push line
   res
+
+blank-line = (list) ->
+  list.map (line) ->
+    if line.match /^\s*\/\/\s*$/ then ""
+    else line
 
 exports.goose = (code) ->
   list = code.split "\n"
   list.push("")
   list = (mark-comment list)
+  # show list
   list = add-bracket list
+  # show list
+  list = blank-line list
   list.join \\n

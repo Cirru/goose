@@ -9,6 +9,7 @@ touch src/goose.ls
 touch bin/index.js
 touch test/demo1.gos
 touch test/demo2.gos
+touch test/demo3.gos
 
 chmod +x bin/index.js
 

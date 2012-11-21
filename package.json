@@ -1,0 +1,28 @@
+{
+  "name": "goose",
+  "version": "0.0.0",
+  "description": "Goose is a command which adds brackets for golang",
+  "main": "bin/index.js",
+  "bin": {
+    "goose": "bin/index.js"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "bin/index.js test/*gos"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jiyinyiyong/goose.git"
+  },
+  "keywords": [
+    "golang",
+    "indentaion",
+    "syntax",
+    "sugar"
+  ],
+  "author": "jiyinyiyong",
+  "license": "MIT",
+  "readmeFilename": "readme.md"
+}
