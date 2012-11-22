@@ -11,11 +11,17 @@ Hope you like it.
 ### Installation
 
 By now it's a simple and fragile script adding brackets by counting.  
-There shouldn't be any output after running it. Note that I only tested on Linux.  
 Installing it with npm, some of you may need to add `sudo`:
 
 ```
 npm install -g goose
+```
+
+Use command to watch files in the background. It will write `.go` in the same path.  
+There shouldn't be any output after running it. Note that I only tested on Linux.  
+```
+goose files.gos file2.gos more-file.gos &
+pkill -f goose
 ```
 
 ### Considered:
