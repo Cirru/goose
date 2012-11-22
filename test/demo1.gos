@@ -44,3 +44,9 @@ Otto.Run(`
     // The value of def is 1
 
 `)
+
+/* comment
+comment
+    comment
+  comment
+*/

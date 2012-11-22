@@ -1,4 +1,7 @@
 
+cd `dirname $0`
+subl -a .
+
 mkdir -p src
 mkdir -p lib
 mkdir -p bin

@@ -26,3 +26,13 @@ fgun
 	`)
 }
 dd
+
+/* more
+new {
+	more {
+		more
+	}
+}
+more
+
+*/

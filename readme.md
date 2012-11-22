@@ -30,8 +30,8 @@ It'll be much more complicated to make it compatible with the whole go syntax.
 Below is the parts covered in this script:
 
 * `var const import` use parentheses
-* `case` don't need brackets
-* `// comments` for comments
+* force `case default` to use curly brackets
+* `// comments` for comments, `/* cross line */` is also available
 * `backquote` represents cross line strings
 * golang use `"\t"` to indent
 
@@ -86,6 +86,12 @@ Otto.Run(`
     // The value of def is 1
 
 `)
+
+/* comment
+comment
+    comment
+  comment
+*/
 ```
 
 Converts to:
@@ -126,15 +132,18 @@ func cat(f *file.File) {
   var buf [NBUF]byte
   for {
     switch nr, er := f.Read(buf[:]); true
-    case nr < 0:
+    case nr < 0: {
       fmt.Fprintf(os.Stderr, "cat: error reading from %s: %s\n", f.String(), er.String())
       os.Exit(1)
-    case nr == 0:  // EOF
+    }
+    case nr == 0:  // EOF {
       return
-    case nr > 0:
+    }
+    case nr > 0: {
       if nw, ew := file.Stdout.Write(buf[0:nr]); nw != nr {
         fmt.Fprintf(os.Stderr, "cat: error writing from %s: %s\n", f.String(), ew.String())
       }
+    }
   }
 }
 
@@ -144,6 +153,15 @@ Otto.Run(`
     // The value of def is 1
 
 `)
+
+/* comment
+comment {
+    comment
+  }
+  comment
+}
+*/
+
 ```
 
 ### License

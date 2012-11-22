@@ -33,15 +33,18 @@ func cat(f *file.File) {
 	var buf [NBUF]byte
 	for {
 		switch nr, er := f.Read(buf[:]); true
-		case nr < 0:
+		case nr < 0: {
 			fmt.Fprintf(os.Stderr, "cat: error reading from %s: %s\n", f.String(), er.String())
 			os.Exit(1)
-		case nr == 0:  // EOF
+		}
+		case nr == 0:  // EOF {
 			return
-		case nr > 0:
+		}
+		case nr > 0: {
 			if nw, ew := file.Stdout.Write(buf[0:nr]); nw != nr {
 				fmt.Fprintf(os.Stderr, "cat: error writing from %s: %s\n", f.String(), ew.String())
 			}
+		}
 	}
 }
 
@@ -51,3 +54,11 @@ Otto.Run(`
 		// The value of def is 1
 
 `)
+
+/* comment
+comment {
+		comment
+	}
+	comment
+}
+*/

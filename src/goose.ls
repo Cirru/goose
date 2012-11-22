@@ -18,37 +18,33 @@ mark-comment = (list) ->
 
 add-bracket = (list) ->
 
-  dont-wrap = <[ case ]>
   round-wrap = <[ var const import ]>
 
-  at-dont = no
   at-round = no
-  dont-pos = 0
-
   at-string = no
+  at-comment = no
 
   indent = 0
 
   res = []
   list.for-each (line) ->
     if at-string
-      if line.match(/^\s*\`/)?
-        at-string := off
-        # show "turn off", line
+      if line.match(/^\s*\`/)? then at-string := off
+      res.push line
+    else if at-comment
+      if line.match(/^\s*\*\//)? then at-comment := off
+      else if line.match(/\*\/\s*$/)? then at-comment := off
       res.push line
     else
-      if line.match(/\`\s*$/)?
-        # show "turn on", line
-        at-string := on
+      if line.match(/\`\s*$/)? then at-string := on
+      else if line.match(/\/\*\s*$/)? then at-comment := on
+      else if line.match(/^\s*\*\/$/)? then at-comment := on
       n = count-indent line
       # show \compare n, indent
       if n > indent
         if res[*-1]?
           key = res[*-1].match(/\s*(\S+)/).1
-          if key in dont-wrap
-            at-dont := yes
-            dont-pos := n
-          else if key in round-wrap
+          if key in round-wrap
             res[*-1] += " ("
             at-round := yes
           else
@@ -62,8 +58,6 @@ add-bracket = (list) ->
             gen = '  ' * curr + ")"
             res.push gen
             at-round := off
-          else if at-dont and (indent is dont-pos)
-            at-dont := off
           else
             gen = '  ' * curr + "}"
             res.push gen
