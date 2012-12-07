@@ -165,8 +165,12 @@ comment {
   comment
 }
 */
-
 ```
+
+### Syntax highlight
+
+You can use the Sublime package to highlight:  
+https://github.com/jiyinyiyong/Goose.sublime
 
 ### License
 
