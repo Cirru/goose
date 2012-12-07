@@ -24,6 +24,10 @@ goose files.gos file2.gos more-file.gos &
 pkill -f goose
 ```
 
+### Usage
+
+`-o` option to specify output directory.
+
 ### Considered:
 
 It'll be much more complicated to make it compatible with the whole go syntax.   
